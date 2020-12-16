@@ -129,12 +129,6 @@ document.addEventListener('deviceready', function(){
             //TODO: use your base64EncodedQRImage
             
             let page_start = document.querySelector('#page_start_game');
-            //Obtenemos la foto de perfil de la cuenta de google
-            /*
-            var img = document.createElement('img');
-            img.src = base64EncodedQRImage;
-            img.id = "qr";
-            */
             var img = document.getElementById('qr');
             img.src = base64EncodedQRImage;
             
@@ -163,8 +157,6 @@ document.addEventListener('deviceready', function(){
         var iTags = document.getElementsByTagName("input");
         
         let el = document.createElement('div');
-        //el.id = "quest" + iTags;
-        //el.class = "quest4";
         el.classList.add('quest4');
         
         el.innerHTML = "<div> <label for='quest_nm_edit'>Pregunta</label> <input type='text' id='quest_nm_edit' name='quest_nm_edit' /> </div>";
@@ -174,12 +166,20 @@ document.addEventListener('deviceready', function(){
         el.innerHTML += "<div> <input type='radio' id='opt3' name='" + "quest" + iTags.length + "' value='Option3'> <input type='text' id='quest_op3_edit' name='quest_opt3_edit'/> </div>";
         el.innerHTML += "<div> <input type='radio' id='opt4' name='" + "quest" + iTags.length + "' value='Option4'> <input type='text' id='quest_op4_edit' name='quest_opt4_edit'/> </div>";
         
-        el.innerHTML += "<button class='add_img'> Add image </button>";
+        el.innerHTML += "<p> Imagen: </p>";
+        el.innerHTML += "<input type='file' id='file-selector' accept='.jpg, .jpeg, .png'>";
+                    
         el.innerHTML += "<p> Tipo de pregunta: </p>";
         el.innerHTML += "<div class='quest-select'> <select> <option value='0'>4 opciones</option> <option value='1'>2 opciones</option> <option value='2'>Respuesta abierta</option> </select> </div>";
         
         page_add_game.appendChild(el);
         
+        document.querySelectorAll('#file-selector').forEach(item => {
+            item.addEventListener('change', (event) => {
+                const fileList = event.target.files;
+                console.log(fileList);
+            });
+        });
         
         document.querySelectorAll('.quest-select').forEach(item => {
             item.addEventListener('change', (event) => {
@@ -188,7 +188,6 @@ document.addEventListener('deviceready', function(){
                 if(event.target.value == 0) {
                     let el = item.parentElement;
                     
-                    //el.class = "quest4";
                     el.classList.remove('questo');
                     el.classList.remove('quest2');
                     el.classList.add('quest4');
@@ -200,46 +199,74 @@ document.addEventListener('deviceready', function(){
                     el.innerHTML += "<div> <input type='radio' id='opt3' name='" + "quest" + iTags.length + "' value='Option3'> <input type='text' id='quest_op3_edit' name='quest_opt3_edit'/> </div>";
                     el.innerHTML += "<div> <input type='radio' id='opt4' name='" + "quest" + iTags.length + "' value='Option4'> <input type='text' id='quest_op4_edit' name='quest_opt4_edit'/> </div>";
                     
-                    el.innerHTML += "<button class='add_img'> Add image </button>";
+                    el.innerHTML += "<p> Imagen: </p>";
+                    el.innerHTML += "<input type='file' id='file-selector' accept='.jpg, .jpeg, .png'>";
+                    
                     el.innerHTML += "<p> Tipo de pregunta: </p>";
                     el.innerHTML += "<div class='quest-select'> <select> <option value='0'>4 opciones</option> <option value='1'>2 opciones</option> <option value='2'>Respuesta abierta</option> </select> </div>";
                     
                     page_add_game.appendChild(el);
+                    
+                    document.querySelectorAll('#file-selector').forEach(item => {
+                        item.addEventListener('change', (event) => {
+                            const fileList = event.target.files;
+                            console.log(fileList);
+                        });
+                    });
+                    
                 } else if (event.target.value == 1) {
                     let el = item.parentElement;
                     
-                    //el.class = "quest2";
+                    el.classList.remove('quest4');
                     el.classList.remove('questo');
                     el.classList.add('quest2');
-                    el.classList.remove('quest4');
         
                     el.innerHTML = "<div> <label for='quest_nm_edit'>Pregunta</label> <input type='text' id='quest_nm_edit' name='quest_nm_edit' /> </div>";
                     el.innerHTML += "<button class='delete_quest'> X </button>";
                     el.innerHTML += "<div> <label for='Si'> Sí </label> <input type='radio' id='opt1' name='" + "quest" + iTags.length + "' value='Si' checked> </div>";
                     el.innerHTML += "<div> <label for='No'> No </label> <input type='radio' id='opt2' name='" + "quest" + iTags.length + "' value='No'> </div>";
                     
-                    el.innerHTML += "<button class='add_img'> Add image </button>";
+                    el.innerHTML += "<p> Imagen: </p>";
+                    el.innerHTML += "<input type='file' id='file-selector' accept='.jpg, .jpeg, .png'>";
+                    
                     el.innerHTML += "<p> Tipo de pregunta: </p>";
                     el.innerHTML += "<div class='quest-select'> <select> <option value='0'>4 opciones</option> <option value='1'>2 opciones</option> <option value='2'>Respuesta abierta</option> </select> </div>";
                     
                     page_add_game.appendChild(el);
+                    
+                    document.querySelectorAll('#file-selector').forEach(item => {
+                        item.addEventListener('change', (event) => {
+                            const fileList = event.target.files;
+                            console.log(fileList);
+                        });
+                    });
+                    
                 } else if (event.target.value == 2) {
                     let el = item.parentElement;
                     
-                    //el.class = "questo";
-                    el.classList.add('questo');
                     el.classList.remove('quest2');
                     el.classList.remove('quest4');
+                    el.classList.add('questo');
         
                     el.innerHTML = "<div> <label for='quest_nm_edit'>Pregunta</label> <input type='text' id='quest_nm_edit' name='quest_nm_edit' /> </div>";
                     el.innerHTML += "<button class='delete_quest'> X </button>";
                     el.innerHTML += "<div> <label for='quest_res_edit'>Respuesta</label> <input type='text' id='quest_res_edit' name='quest_res_edit' /> </div>";
                     
-                    el.innerHTML += "<button class='add_img'> Add image </button>";
+                    el.innerHTML += "<p> Imagen: </p>";
+                    el.innerHTML += "<input type='file' id='file-selector' accept='.jpg, .jpeg, .png'>";
+                    
                     el.innerHTML += "<p> Tipo de pregunta: </p>";
                     el.innerHTML += "<div class='quest-select'> <select> <option value='0'>4 opciones</option> <option value='1'>2 opciones</option> <option value='2'>Respuesta abierta</option> </select> </div>";
                     
                     page_add_game.appendChild(el);
+                    
+                    document.querySelectorAll('#file-selector').forEach(item => {
+                        item.addEventListener('change', (event) => {
+                            const fileList = event.target.files;
+                            console.log(fileList);
+                        });
+                    });
+                    
                 }
             });
         });
@@ -251,18 +278,21 @@ document.addEventListener('deviceready', function(){
         var game_nm = document.getElementById("game_nm").value;
         var game_desc = document.getElementById("game_desc").value;
         
-        /*
-        root_ref.child("users").child(user.uid).push().set(
+        var qTags = document.querySelectorAll(".quest4, .quest2, .questo");
+        console.log(qTags);
+
+        var newChildRef = firebase.database().ref('users/' + user.uid).push();
+        var key = newChildRef.key;
+        console.log(key);
+        newChildRef.set(
             {
                 name: game_nm,
                 description: game_desc
             }
         );
-        */
         
-        var qTags = document.querySelectorAll(".quest4, .quest2, .questo");
-        console.log(qTags);
-
+        console.log(newChildRef);
+        
         for (var i = 0; i < qTags.length; i++) {
                 
             if (qTags[i].classList.contains('quest4')) {
@@ -278,16 +308,41 @@ document.addEventListener('deviceready', function(){
                 let opt4 = qTags[i].children[5].children[1].value;
                 if(qTags[i].children[5].children[0].checked) sol = qTags[i].children[5].children[1].value;
                 
-                
-                root_ref.child("users").child(user.uid).push().set(
+                root_ref.child("users").child(user.uid).child(key).push().set(
                     {
-                        name: game_nm,
-                        description: game_desc,
                         type: "4options",
                         option1: opt1,
                         option2: opt2,
                         option3: opt3,
                         option4: opt4,
+                        solution: sol,
+                        title: titleQuest
+                    }
+                );
+                
+            } else if(qTags[i].classList.contains('quest2')) {
+                let titleQuest = qTags[i].children[0].children[1].value;
+                let sol = null;
+                
+                //Option1 yes                
+                if(qTags[i].children[2].children[0].checked) sol = qTags[i].children[2].children[1].value;
+                //Option2 no
+                if(qTags[i].children[3].children[0].checked) sol = qTags[i].children[3].children[1].value;
+                
+                root_ref.child("users").child(user.uid).child(key).push().set(
+                    {
+                        type: "2options",
+                        solution: sol,
+                        title: titleQuest
+                    }
+                );
+            }  else if(qTags[i].classList.contains('questo')) {
+                let titleQuest = qTags[i].children[0].children[1].value;
+                let sol = qTags[i].children[2].children[1].value;
+                
+                root_ref.child("users").child(user.uid).child(key).push().set(
+                    {
+                        type: "open",
                         solution: sol,
                         title: titleQuest
                     }

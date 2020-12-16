@@ -35,7 +35,7 @@ BuildInfoProxy = {
 
         try {
             /* <EMBED_CODE> */
-            const json = {"debug":true,"buildDate":"2020-12-06T16:50:35.310Z","packageName":"es.uc3m.ubicomp.ubihoot","basePackageName":"es.uc3m.ubicomp.ubihoot","name":"Ubihoot","displayName":"Ubihoot","version":"1.0.0","versionCode":"1.0.0"};
+            const json = {"debug":true,"buildDate":"2020-12-16T16:56:55.598Z","packageName":"es.uc3m.ubicomp.ubihoot","basePackageName":"es.uc3m.ubicomp.ubihoot","name":"Ubihoot","displayName":"Ubihoot","version":"1.0.0","versionCode":"1.0.0"};
             /* </EMBED_CODE> */
 
             var ret = {
