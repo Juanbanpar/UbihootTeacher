@@ -2,6 +2,7 @@ document.addEventListener('deviceready', function(){
 	let user = null;
 	let db = null;
     let storageRef = null;
+    let fileList = null;
 
     var taskName;
     
@@ -26,7 +27,7 @@ document.addEventListener('deviceready', function(){
                 storageRef = firebase.storage().ref();
                 let root_ref = db.ref();
                 let users_ref = db.ref("users");
-
+                
                 const page_main = document.querySelector('#page_main');
                 //Obtenemos la foto de perfil de la cuenta de google
                 let photoURL = user.photoURL;
@@ -157,7 +158,7 @@ document.addEventListener('deviceready', function(){
         var iTags = document.getElementsByTagName("input");
         
         let el = document.createElement('div');
-        el.classList.add('quest4');
+        el.classList.add('questcuatro');
         
         el.innerHTML = "<div> <label for='quest_nm_edit'>Pregunta</label> <input type='text' id='quest_nm_edit' name='quest_nm_edit' /> </div>";
         el.innerHTML += "<button class='delete_quest'> X </button>";
@@ -176,8 +177,7 @@ document.addEventListener('deviceready', function(){
         
         document.querySelectorAll('#file-selector').forEach(item => {
             item.addEventListener('change', (event) => {
-                const fileList = event.target.files;
-                console.log(fileList);
+                fileList = event.target.files;
             });
         });
         
@@ -189,8 +189,8 @@ document.addEventListener('deviceready', function(){
                     let el = item.parentElement;
                     
                     el.classList.remove('questo');
-                    el.classList.remove('quest2');
-                    el.classList.add('quest4');
+                    el.classList.remove('questdos');
+                    el.classList.add('questcuatro');
         
                     el.innerHTML = "<div> <label for='quest_nm_edit'>Pregunta</label> <input type='text' id='quest_nm_edit' name='quest_nm_edit' /> </div>";
                     el.innerHTML += "<button class='delete_quest'> X </button>";
@@ -209,17 +209,16 @@ document.addEventListener('deviceready', function(){
                     
                     document.querySelectorAll('#file-selector').forEach(item => {
                         item.addEventListener('change', (event) => {
-                            const fileList = event.target.files;
-                            console.log(fileList);
+                            fileList = event.target.files;
                         });
                     });
                     
                 } else if (event.target.value == 1) {
                     let el = item.parentElement;
                     
-                    el.classList.remove('quest4');
+                    el.classList.remove('questcuatro');
                     el.classList.remove('questo');
-                    el.classList.add('quest2');
+                    el.classList.add('questdos');
         
                     el.innerHTML = "<div> <label for='quest_nm_edit'>Pregunta</label> <input type='text' id='quest_nm_edit' name='quest_nm_edit' /> </div>";
                     el.innerHTML += "<button class='delete_quest'> X </button>";
@@ -236,16 +235,15 @@ document.addEventListener('deviceready', function(){
                     
                     document.querySelectorAll('#file-selector').forEach(item => {
                         item.addEventListener('change', (event) => {
-                            const fileList = event.target.files;
-                            console.log(fileList);
+                            fileList = event.target.files;
                         });
                     });
                     
                 } else if (event.target.value == 2) {
                     let el = item.parentElement;
                     
-                    el.classList.remove('quest2');
-                    el.classList.remove('quest4');
+                    el.classList.remove('questdos');
+                    el.classList.remove('questcuatro');
                     el.classList.add('questo');
         
                     el.innerHTML = "<div> <label for='quest_nm_edit'>Pregunta</label> <input type='text' id='quest_nm_edit' name='quest_nm_edit' /> </div>";
@@ -262,8 +260,7 @@ document.addEventListener('deviceready', function(){
                     
                     document.querySelectorAll('#file-selector').forEach(item => {
                         item.addEventListener('change', (event) => {
-                            const fileList = event.target.files;
-                            console.log(fileList);
+                            fileList = event.target.files;
                         });
                     });
                     
@@ -278,24 +275,21 @@ document.addEventListener('deviceready', function(){
         var game_nm = document.getElementById("game_nm").value;
         var game_desc = document.getElementById("game_desc").value;
         
-        var qTags = document.querySelectorAll(".quest4, .quest2, .questo");
+        var qTags = document.querySelectorAll(".questcuatro, .questdos, .questo");
         console.log(qTags);
 
         var newChildRef = firebase.database().ref('users/' + user.uid).push();
         var key = newChildRef.key;
-        console.log(key);
         newChildRef.set(
             {
                 name: game_nm,
                 description: game_desc
             }
         );
-        
-        console.log(newChildRef);
-        
+                
         for (var i = 0; i < qTags.length; i++) {
                 
-            if (qTags[i].classList.contains('quest4')) {
+            if (qTags[i].classList.contains('questcuatro')) {
                 let titleQuest = qTags[i].children[0].children[1].value;
                 let sol = null;
                 
@@ -308,7 +302,9 @@ document.addEventListener('deviceready', function(){
                 let opt4 = qTags[i].children[5].children[1].value;
                 if(qTags[i].children[5].children[0].checked) sol = qTags[i].children[5].children[1].value;
                 
-                root_ref.child("users").child(user.uid).child(key).push().set(
+                var gameRef = firebase.database().ref('users/' + user.uid + "/" + key).push();
+                var key2 = gameRef.key;
+                gameRef.set(
                     {
                         type: "4options",
                         option1: opt1,
@@ -320,7 +316,11 @@ document.addEventListener('deviceready', function(){
                     }
                 );
                 
-            } else if(qTags[i].classList.contains('quest2')) {
+                storageRef.child("users").child(user.uid).child(key).child(key2).putString(fileList, 'base64').then(function(snapshot) {
+                    console.log('Uploaded a base64 string!');
+                });
+                
+            } else if(qTags[i].classList.contains('questdos')) {
                 let titleQuest = qTags[i].children[0].children[1].value;
                 let sol = null;
                 
