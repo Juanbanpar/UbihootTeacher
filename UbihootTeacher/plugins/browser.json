@@ -1,0 +1,30 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-browsertab": {
+      "PACKAGE_NAME": "es.uc3m.ubicomp.ubihoot"
+    },
+    "cordova-plugin-buildinfo": {
+      "PACKAGE_NAME": "es.uc3m.ubicomp.ubihoot"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "es.uc3m.ubicomp.ubihoot"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "es.uc3m.ubicomp.ubihoot"
+    },
+    "cordova-universal-links-plugin": {
+      "PACKAGE_NAME": "es.uc3m.ubicomp.ubihoot"
+    },
+    "cordova-plugin-qrcodejs": {
+      "PACKAGE_NAME": "es.uc3m.ubicomp.ubihoot"
+    }
+  },
+  "dependent_plugins": {}
+}

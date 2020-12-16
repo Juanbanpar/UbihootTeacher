@@ -1,0 +1,66 @@
+{
+  "_from": "git+https://github.com/GEDYSIntraWare/cordova-universal-links-plugin.git",
+  "_id": "@gedysintraware/cordova-universal-links-plugin@1.2.1-GI",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/@gedysintraware/cordova-universal-links-plugin",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "https://github.com/GEDYSIntraWare/cordova-universal-links-plugin.git",
+    "rawSpec": "https://github.com/GEDYSIntraWare/cordova-universal-links-plugin.git",
+    "saveSpec": "git+https://github.com/GEDYSIntraWare/cordova-universal-links-plugin.git",
+    "fetchSpec": "https://github.com/GEDYSIntraWare/cordova-universal-links-plugin.git",
+    "gitCommittish": null
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/GEDYSIntraWare/cordova-universal-links-plugin.git#2a8732c2290beaa012c127b94753a381da21ed21",
+  "_spec": "https://github.com/GEDYSIntraWare/cordova-universal-links-plugin.git",
+  "_where": "/home/xan/Documentos/Ubícua/PFinal/UbihootTeacher/UbihootTeacher",
+  "author": {
+    "name": "Nikolay Demyankov for Nordnet Bank AB"
+  },
+  "bugs": {
+    "url": "https://github.com/gedysintraware/cordova-universal-links-plugin/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-universal-links-plugin",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "dependencies": {
+    "mkpath": ">=1.0.0",
+    "node-version-compare": ">=1.0.1",
+    "plist": ">=1.2.0",
+    "rimraf": ">=2.4",
+    "xml2js": ">=0.4"
+  },
+  "deprecated": false,
+  "description": "Cordova plugin to add in your application support for Universal Links (iOS 9) and Deep Links (Android). Basically, open application through the link in the browser.",
+  "homepage": "https://github.com/gedysintraware/cordova-universal-links-plugin#readme",
+  "keywords": [
+    "cordova",
+    "links",
+    "universal",
+    "deep links",
+    "universal links",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android",
+    "ios",
+    "android"
+  ],
+  "license": "MIT",
+  "name": "@gedysintraware/cordova-universal-links-plugin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gedysintraware/cordova-universal-links-plugin.git"
+  },
+  "version": "1.2.1-GI"
+}
