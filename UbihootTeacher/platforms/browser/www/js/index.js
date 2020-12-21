@@ -102,9 +102,17 @@ document.addEventListener('deviceready', function(){
                             var root_ref = db.ref();
 
                             var parent = item.parentElement;
-                            root_ref.child('users').child(user.uid).orderByChild('name').equalTo(parent.children[0].innerHTML).on("value", function(snapshot) {
+                            root_ref.child('users').child(user.uid).orderByChild('name').equalTo(parent.children[0].innerHTML).on("value", function(snapshot) {          
                                 snapshot.forEach(function(child) {
                                     
+                                    var startGame = root_ref.child('users').child(user.uid);
+                                    startGame.update(
+                                        {
+                                            actual_game: child.key
+                                        }
+                                    );
+                                    
+                                                                        
                                     var qrInfo = user.uid + "|" + child.key;
                                     console.log(qrInfo);
                                     
@@ -316,9 +324,25 @@ document.addEventListener('deviceready', function(){
                     }
                 );
                 
-                storageRef.child("users").child(user.uid).child(key).child(key2).putString(fileList, 'base64').then(function(snapshot) {
-                    console.log('Uploaded a base64 string!');
+                
+                const toBase64 = file => new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = () => resolve(reader.result);
+                    reader.onerror = error => reject(error);
                 });
+
+                async function Main(file) {
+                    console.log(await toBase64(file));
+                    const result = await toBase64(file).catch(e => Error(e));
+                    
+                    storageRef.child("users").child(user.uid).child(key).child(key2).putString(result, 'data_url').then(function(snapshot) {
+                        console.log('Uploaded a base64 string!');
+                    });
+                }
+
+                Main(fileList[0]);
+                
                 
             } else if(qTags[i].classList.contains('questdos')) {
                 let titleQuest = qTags[i].children[0].children[1].value;
@@ -429,8 +453,15 @@ document.addEventListener('deviceready', function(){
     });
     
     document.querySelector('#btn_finish_game').addEventListener('click',function(){
+        var startGame = firebase.database().ref('users/' + user.uid + "/");
+        startGame.update(
+            {
+                actual_game: null
+            }
+        );
+        
         document.querySelector('#page_start_game').style.display = "none";
         document.querySelector('#page_main').style.display = "block";
 	});
-
+    
 });
